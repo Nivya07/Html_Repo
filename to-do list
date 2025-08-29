@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic TO-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section>
+    <h2>My To Do List</h2>
+    <form>
+      <input type="text" id="task" placeholder="Enter a new task" />
+      <button onclick="addTask(event)">Add</button>
+      <div id="res"></div>
+    </form>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+let taskItems = [];
+
+function addTask(event) {
+  event.preventDefault();
+  document.getElementById("res").innerHTML = "";
+  const task = document.getElementById("task").value;
+  taskItems.push(task);
+  console.log(taskItems);
+  taskItems.map((val, ind) => {
+    document.getElementById("res").innerHTML +=
+      "<li>" + val + "</li><button class='delete-btn'>Delete</button>";
+  });
+  document.getElementById("task").value = "";
+}
+
+document.getElementById("res").addEventListener("click", (e) => {
+  e.target.classList.add("strike");
+  console.log(e.target);
+});
+
+function delItem() {
+
+}
+
+
+.strike {
+  text-decoration: line-through;
+  color: gray;
+}
